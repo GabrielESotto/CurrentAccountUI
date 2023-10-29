@@ -1,0 +1,35 @@
+<h1 mat-dialog-title class="mb-1">Editar lançamento</h1>
+<div mat-dialog-content>
+
+  <div class="mb-4">
+    <span>Altere a descrição e o valor desejado</span>
+  </div>
+
+  <form (ngSubmit)="editStatement()" [formGroup]="accountStatementForm">
+    <mat-form-field [hideRequiredMarker]="true" class="w-100 mt-2 mb-2">
+      <mat-label style="font-size: 13px;">Descrição</mat-label>
+      <input class="m-0 h-25" matInput type="text" formControlName="description" [ngClass]="{'is-invalid': displayMessage['description']}">
+    </mat-form-field>
+    <span class="text-danger mt-0" style="font-size: 11px; height: 1px;" *ngIf="displayMessage['description']"><p [innerHTML]="displayMessage['description']"></p></span>
+
+    <mat-form-field [hideRequiredMarker]="true" class="w-100 mt-2 mb-2">
+      <mat-label style="font-size: 13px;">Data</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date" [ngClass]="{'is-invalid': displayMessage['date']}">
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <span class="text-danger mt-0" style="font-size: 11px; height: 1px;" *ngIf="displayMessage['date']"><p [innerHTML]="displayMessage['date']"></p></span>
+
+    <mat-form-field [hideRequiredMarker]="true" class="w-100 mt-2 mb-2">
+      <mat-label style="font-size: 13px;">Valor</mat-label>
+      <input matInput formControlName="value" [ngClass]="{'is-invalid': displayMessage['value']}" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
+    </mat-form-field>
+    <span class="text-danger mt-0" style="font-size: 11px; height: 1px;" *ngIf="displayMessage['value']"><p [innerHTML]="displayMessage['value']"></p></span>
+
+    <div class="mt-3 d-flex justify-content-around">
+      <button type="submit" mat-raised-button color="primary" [disabled]="!accountStatementForm.valid">Editar</button>
+      <button type="button" mat-raised-button color="secondary" mat-dialog-close>Cancelar</button>
+    </div>
+  </form>
+
+</div>

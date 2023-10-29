@@ -1,0 +1,27 @@
+<h1 mat-dialog-title class="mb-1">Depositar</h1>
+<div mat-dialog-content>
+
+  <div class="mb-4">
+    <span>Insira a descrição e o valor a ser depositado</span>
+  </div>
+
+  <form (ngSubmit)="deposit()" [formGroup]="accountStatementForm">
+    <mat-form-field [hideRequiredMarker]="true" class="w-100 mt-2 mb-2">
+      <mat-label style="font-size: 13px;">Descrição</mat-label>
+      <input class="m-0 h-25" matInput type="text" formControlName="description" [ngClass]="{'is-invalid': displayMessage['description']}">
+    </mat-form-field>
+    <span class="text-danger mt-0" style="font-size: 11px; height: 1px;" *ngIf="displayMessage['description']"><p [innerHTML]="displayMessage['description']"></p></span>
+
+    <mat-form-field [hideRequiredMarker]="true" class="w-100 mt-2 mb-2">
+      <mat-label style="font-size: 13px;">Valor</mat-label>
+      <input currencyMask matInput formControlName="value" [ngClass]="{'is-invalid': displayMessage['value']}" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"/>
+    </mat-form-field>
+    <span class="text-danger mt-0" style="font-size: 11px; height: 1px;" *ngIf="displayMessage['value']"><p [innerHTML]="displayMessage['value']"></p></span>
+
+    <div class="mt-3 d-flex justify-content-around">
+      <button type="submit" mat-raised-button color="primary" [disabled]="!accountStatementForm.valid">Depositar</button>
+      <button type="button" mat-raised-button color="secondary" mat-dialog-close>Cancelar</button>
+    </div>
+  </form>
+
+</div>

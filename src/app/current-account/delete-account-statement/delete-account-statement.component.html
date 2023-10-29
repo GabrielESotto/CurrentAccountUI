@@ -1,0 +1,11 @@
+<h1 mat-dialog-title class="mb-1">Remover lançamento</h1>
+<div mat-dialog-content>
+  <div class="mb-4">
+    <span>Você está removendo um lançamento do extrato, esse processo é irreversível. Tem certeza que deseja continuar?</span>
+  </div>
+
+  <div class="mt-3 d-flex justify-content-around">
+    <button type="submit" mat-raised-button color="primary" (click)="deleteStatement()">Remover</button>
+    <button type="button" mat-raised-button color="secondary" mat-dialog-close>Cancelar</button>
+  </div>
+</div>

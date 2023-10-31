@@ -13,10 +13,10 @@
     </mat-form-field>
 
     <div>
-      <strong>Total: <span>{{ sumAllStatements() | currency:'R$' }}</span></strong>
+      <strong class="totalDiv">Total: <span>{{ sumAllStatements() | currency:'R$' }}</span></strong>
     </div>
 
-    <button mat-mini-fab type="button" color="primary" (click)="openAddDialog()" matToolTip="Remover lançamento">
+    <button mat-mini-fab type="button" class="btn-add" color="primary" (click)="openAddDialog()" matToolTip="Remover lançamento">
         <mat-icon mat-icon-button>add</mat-icon>
     </button>
   </div>
@@ -51,10 +51,12 @@
       <ng-container matColumnDef="options">
         <th mat-header-cell *matHeaderCellDef> Options </th>
         <td mat-cell *matCellDef="let accountStatement">
-          <button class="bg-transparent border-0" type="button" (click)="openEditDialog(accountStatement)" matToolTip="Editar lançamento" [disabled]="conditionToDisable">
-            <mat-icon class="bg-transparent">edit</mat-icon>
+          <button class="bg-transparent border-0 btn-edit" type="button" (click)="openEditDialog(accountStatement)" matToolTip="Editar lançamento">
+            <mat-icon mat-icon-button class="bg-transparent">edit</mat-icon>
           </button>
-          <mat-icon type="button" (click)="openCancelDialog(accountStatement)" matToolTip="Remover lançamento" class="bg-transparent text-danger ml-3" [ariaDisabled]="conditionToDisable">delete</mat-icon>
+          <button class="bg-transparent border-0 text-danger ml-3 btn-cancel" type="button" (click)="openCancelDialog(accountStatement)" matToolTip="Remover lançamento">
+            <mat-icon mat-icon-button class="bg-transparent">delete</mat-icon>
+          </button>
         </td>
       </ng-container>
 
